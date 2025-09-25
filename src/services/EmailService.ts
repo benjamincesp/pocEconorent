@@ -68,7 +68,7 @@ export class EmailService {
 
   private getHeaderValue(headers: gmail_v1.Schema$MessagePartHeader[], name: string): string | undefined {
     const header = headers.find(h => h.name?.toLowerCase() === name.toLowerCase());
-    return header?.value;
+    return header?.value || undefined;
   }
 
   private extractMessageBody(payload: gmail_v1.Schema$MessagePart | undefined): string {
