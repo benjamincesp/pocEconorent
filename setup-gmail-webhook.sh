@@ -1,15 +1,9 @@
 #!/bin/bash
 
 # Script para configurar Gmail webhook con URL de Heroku
-# Uso: ./setup-gmail-webhook.sh tu-app-name
+# Dominio preconfigurado: econorent-poc-2fa710d743c9.herokuapp.com
 
-if [ -z "$1" ]; then
-    echo "Error: Debes proporcionar el nombre de tu app de Heroku"
-    echo "Uso: ./setup-gmail-webhook.sh tu-app-name"
-    exit 1
-fi
-
-HEROKU_APP_NAME=$1
+HEROKU_APP_NAME="econorent-poc-2fa710d743c9"
 WEBHOOK_URL="https://$HEROKU_APP_NAME.herokuapp.com/api/email/gmail-webhook"
 
 echo "🚀 Configurando Gmail webhook para: $WEBHOOK_URL"

@@ -11,19 +11,24 @@ export class EmailController {
 
   gmailWebhook = async (req: Request, res: Response): Promise<void> => {
     try {
-      console.log('Gmail webhook received:', JSON.stringify(req.body, null, 2));
+      console.log('🔔 Gmail webhook received at:', new Date().toISOString());
+      console.log('📧 Headers:', JSON.stringify(req.headers, null, 2));
+      console.log('📦 Raw body:', JSON.stringify(req.body, null, 2));
 
       const notification: EmailNotification = req.body;
 
       if (!notification.message || !notification.message.data) {
+        console.log('❌ Invalid notification format');
         res.status(400).json({ error: 'Invalid notification format' });
         return;
       }
 
+      console.log('🔍 Base64 data:', notification.message.data);
       const decodedData = Buffer.from(notification.message.data, 'base64').toString();
-      const gmailMessage: GmailMessage = JSON.parse(decodedData);
+      console.log('📋 Decoded data:', decodedData);
 
-      console.log('Decoded Gmail message:', gmailMessage);
+      const gmailMessage: GmailMessage = JSON.parse(decodedData);
+      console.log('✅ Parsed Gmail message:', JSON.stringify(gmailMessage, null, 2));
 
       await this.emailService.processEmailNotification(gmailMessage);
 

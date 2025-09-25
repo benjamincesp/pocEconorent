@@ -34,3 +34,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Google Cloud credentials and OAuth tokens
+credentials.json
+service-account-key.json
+gmail-token.json
+
+# Setup scripts and temporary files
+setup-gmail-webhook.sh
+setup-gmail-watch.sh
+setup-oauth-gmail.js
+test-gmail-watch.js
+run-gmail-setup.sh
+
+# Deployment instructions (keep DEPLOY_INSTRUCTIONS.md for reference)
+# DEPLOY_INSTRUCTIONS.md
